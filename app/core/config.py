@@ -2,7 +2,12 @@
 
 
 class Settings(BaseSettings):
-    model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        env_file_encoding="utf-8",
+        case_sensitive=False,   # APP_ENV == app_env
+        extra="ignore",         # no se cae si hay variables extra
+    )
 
     APP_ENV: str = "local"
     APP_NAME: str = "Inventory API"
@@ -16,7 +21,6 @@ class Settings(BaseSettings):
 
     @property
     def DATABASE_URL_ASYNC(self) -> str:
-        # asyncpg driver for async SQLAlchemy
         return (
             f"postgresql+asyncpg://{self.POSTGRES_USER}:{self.POSTGRES_PASSWORD}"
             f"@{self.POSTGRES_HOST}:{self.POSTGRES_PORT}/{self.POSTGRES_DB}"

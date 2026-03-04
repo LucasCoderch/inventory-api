@@ -7,10 +7,8 @@ from app.db.session import get_db
 
 app = FastAPI(title=settings.APP_NAME, version=settings.APP_VERSION)
 
-
 @app.get("/health")
 async def health() -> dict:
-    # health básico + ping a DB
     try:
         async for db in get_db():
             assert isinstance(db, AsyncSession)
