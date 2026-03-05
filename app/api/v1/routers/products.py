@@ -1,7 +1,5 @@
 ﻿from __future__ import annotations
 
-from typing import List
-
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -13,7 +11,7 @@ from app.services.products import ProductService
 router = APIRouter(prefix="/products", tags=["products"])
 
 
-@router.get("", response_model=List[ProductOut])
+@router.get("", response_model=list[ProductOut])
 async def list_products(db: AsyncSession = Depends(get_db)):
     return await ProductService.list(db)
 

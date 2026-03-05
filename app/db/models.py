@@ -1,7 +1,6 @@
 ﻿from __future__ import annotations
 
 from datetime import datetime
-from typing import List, Optional
 
 from sqlalchemy import (
     Boolean,
@@ -30,7 +29,7 @@ class User(Base):
 
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now(), nullable=False)
 
-    orders: Mapped[List["Order"]] = relationship(back_populates="user")
+    orders: Mapped[list[Order]] = relationship(back_populates="user")
 
 
 class Product(Base):
@@ -40,14 +39,14 @@ class Product(Base):
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     sku: Mapped[str] = mapped_column(String(64), nullable=False)
     name: Mapped[str] = mapped_column(String(255), nullable=False)
-    description: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
+    description: Mapped[str | None] = mapped_column(Text, nullable=True)
 
     price: Mapped[float] = mapped_column(Numeric(10, 2), nullable=False)
     stock: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
 
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now(), nullable=False)
 
-    items: Mapped[List["OrderItem"]] = relationship(back_populates="product")
+    items: Mapped[list[OrderItem]] = relationship(back_populates="product")
 
 
 class Order(Base):
@@ -61,8 +60,8 @@ class Order(Base):
 
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now(), nullable=False)
 
-    user: Mapped["User"] = relationship(back_populates="orders")
-    items: Mapped[List["OrderItem"]] = relationship(back_populates="order", cascade="all, delete-orphan")
+    user: Mapped[User] = relationship(back_populates="orders")
+    items: Mapped[list[OrderItem]] = relationship(back_populates="order", cascade="all, delete-orphan")
 
 
 class OrderItem(Base):
@@ -75,5 +74,5 @@ class OrderItem(Base):
     qty: Mapped[int] = mapped_column(Integer, nullable=False)
     unit_price: Mapped[float] = mapped_column(Numeric(10, 2), nullable=False)
 
-    order: Mapped["Order"] = relationship(back_populates="items")
-    product: Mapped["Product"] = relationship(back_populates="items")
+    order: Mapped[Order] = relationship(back_populates="items")
+    product: Mapped[Product] = relationship(back_populates="items")

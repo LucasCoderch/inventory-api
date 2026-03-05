@@ -1,6 +1,6 @@
 ﻿from __future__ import annotations
 
-from typing import List
+import builtins
 
 from sqlalchemy import select
 from sqlalchemy.exc import IntegrityError
@@ -12,7 +12,7 @@ from app.schemas.product import ProductCreate, ProductUpdate
 
 class ProductService:
     @staticmethod
-    async def list(db: AsyncSession) -> List[Product]:
+    async def list(db: AsyncSession) -> builtins.list[Product]:
         res = await db.execute(select(Product).order_by(Product.id))
         return list(res.scalars().all())
 

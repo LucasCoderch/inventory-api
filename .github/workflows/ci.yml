@@ -1,0 +1,58 @@
+﻿name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_DB: inventory
+          POSTGRES_USER: inventory
+          POSTGRES_PASSWORD: inventory
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd="pg_isready -U inventory -d inventory"
+          --health-interval=5s
+          --health-timeout=3s
+          --health-retries=10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Lint
+        run: |
+          ruff check .
+
+      - name: Format check
+        run: |
+          black --check .
+
+      - name: Tests
+        env:
+          APP_ENV: local
+          APP_NAME: Inventory API
+          APP_VERSION: 0.1.0
+          POSTGRES_DB: inventory
+          POSTGRES_USER: inventory
+          POSTGRES_PASSWORD: inventory
+          POSTGRES_HOST: localhost
+          POSTGRES_PORT: 5432
+        run: |
+          pytest -q
