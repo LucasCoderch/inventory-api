@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "defaultMode": "acceptEdits",
+    "allow": [
+      "Bash(docker compose *)",
+      "Bash(docker *)",
+      "Bash(git *)",
+      "Bash(python *)",
+      "Bash(uvicorn *)",
+      "Bash(alembic *)",
+      "Bash(pytest *)",
+      "Bash(pip *)",
+      "Bash(ls *)",
+      "Bash(cat *)",
+      "Bash(mkdir *)",
+      "Bash(cp *)",
+      "Bash(mv *)",
+      "Read",
+      "Edit",
+      "Write",
+      "Glob",
+      "Grep"
+    ]
+  }
+}
