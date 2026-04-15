@@ -5,7 +5,7 @@
 - [x] 1.2 Crear `app/core/security.py` — hash de password, verificación, generación/validación de JWT ✓
 - [x] 1.3 Agregar a `Settings` (`config.py`): `SECRET_KEY`, `ALGORITHM`, `ACCESS_TOKEN_EXPIRE_MINUTES` ✓
 - [x] 1.4 Actualizar `.env` y `.env.example` con las nuevas variables ✓
-- [ ] 1.5 Crear `app/schemas/user.py` — `UserCreate`, `UserOut`, `TokenOut`, `LoginIn`
+- [x] 1.5 Crear `app/schemas/user.py` — `UserCreate`, `UserOut`, `TokenOut`, `LoginIn` ✓
 - [ ] 1.6 Crear `app/services/users.py` — `register`, `authenticate`, `get_by_email`, `get_by_id`
 - [ ] 1.7 Crear `app/api/v1/routers/auth.py` — endpoints:
   - [ ] 1.7.1 `POST /auth/register`
