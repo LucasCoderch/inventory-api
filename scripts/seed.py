@@ -34,7 +34,7 @@ def load_products_from_csv() -> list[dict]:
             if not sku or not description:
                 continue
             try:
-                price = float(price_raw)
+                price = round(float(price_raw), 2)
             except ValueError:
                 continue
             if price <= 0:
@@ -46,7 +46,7 @@ def load_products_from_csv() -> list[dict]:
                     "sku": sku,
                     "name": description[:255],
                     "description": None,
-                    "price": round(price, 2),
+                    "price": price,
                     "stock": 100,  # stock inicial por defecto
                 }
 
