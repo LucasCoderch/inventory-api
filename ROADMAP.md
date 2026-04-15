@@ -15,14 +15,14 @@
 - [x] 1.9 Registrar el router de auth en `app/api/v1/api.py` ✓
 
 ## 2. CRUD de Usuarios (admin)
-- [ ] 2.1 Completar `app/services/users.py` — `list_users`, `get_user`, `deactivate_user`
-- [ ] 2.2 Crear `app/api/v1/routers/users.py`:
-  - [ ] 2.2.1 `GET /users`
-  - [ ] 2.2.2 `GET /users/{id}`
-  - [ ] 2.2.3 `PATCH /users/{id}`
-  - [ ] 2.2.4 `DELETE /users/{id}`
-- [ ] 2.3 Agregar schema `UserUpdate`
-- [ ] 2.4 Registrar router en `api.py`
+- [x] 2.1 Completar `app/services/users.py` — `list_users`, `update_user`, `deactivate_user` ✓
+- [x] 2.2 Crear `app/api/v1/routers/users.py`: ✓
+  - [x] 2.2.1 `GET /users` ✓
+  - [x] 2.2.2 `GET /users/{id}` ✓
+  - [x] 2.2.3 `PATCH /users/{id}` ✓
+  - [x] 2.2.4 `DELETE /users/{id}` ✓
+- [x] 2.3 Agregar schema `UserUpdate` ✓
+- [x] 2.4 Registrar router en `api.py` ✓
 
 ## 3. Proteger endpoints de Productos con roles
 - [ ] 3.1 Agregar `get_current_user` a `POST`, `PATCH`, `DELETE` de productos

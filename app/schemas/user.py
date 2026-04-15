@@ -21,6 +21,11 @@ class UserOut(BaseModel):
     created_at: datetime
 
 
+class UserUpdate(BaseModel):
+    role: Literal["user", "admin"] | None = None
+    is_active: bool | None = None
+
+
 class LoginIn(BaseModel):
     email: EmailStr
     password: str

@@ -5,7 +5,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.security import hash_password, verify_password
 from app.db.models import User
-from app.schemas.user import UserCreate
+from app.schemas.user import UserCreate, UserUpdate
 
 
 class UserService:
@@ -29,6 +29,24 @@ class UserService:
         await db.commit()
         await db.refresh(user)
         return user
+
+    @staticmethod
+    async def list_users(db: AsyncSession) -> list[User]:
+        res = await db.execute(select(User).order_by(User.id))
+        return list(res.scalars().all())
+
+    @staticmethod
+    async def update_user(db: AsyncSession, user: User, data: UserUpdate) -> User:
+        for field, value in data.model_dump(exclude_unset=True).items():
+            setattr(user, field, value)
+        await db.commit()
+        await db.refresh(user)
+        return user
+
+    @staticmethod
+    async def deactivate_user(db: AsyncSession, user: User) -> None:
+        user.is_active = False
+        await db.commit()
 
     @staticmethod
     async def authenticate(db: AsyncSession, email: str, password: str) -> User | None:

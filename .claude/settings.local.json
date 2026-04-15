@@ -15,7 +15,8 @@
       "Bash(cmd /c \"taskkill /PID 8796 /F\")",
       "Bash(netstat -ano)",
       "Bash(cmd *)",
-      "Bash(powershell -Command \"Stop-Process -Id 8796 -Force\")"
+      "Bash(powershell -Command \"Stop-Process -Id 8796 -Force\")",
+      "Bash(powershell *)"
     ]
   }
 }
