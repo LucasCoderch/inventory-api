@@ -1,5 +1,26 @@
 # Roadmap — inventory-api
 
+---
+
+## Convenciones de trabajo
+
+### Idioma
+Todas las respuestas, explicaciones y sugerencias de commits van en **español**.
+
+### Commits (GitHub Desktop)
+- Siempre en español
+- Usar prefijos convencionales: `feat`, `fix`, `refactor`, `test`, `docs`, `chore`
+- Formato: `tipo(scope): descripción corta en español`
+- Ejemplos:
+  - `feat(auth): agregar endpoints de registro y login con JWT`
+  - `fix(seed): corregir filtro de precio cero antes de redondear`
+  - `docs(readme): agregar instrucciones de setup y tabla de endpoints`
+
+### Verificación por paso
+Cada paso del roadmap se marca como completado **solo después** de pasar una verificación concreta (curl, script, test). Al final de cada paso se entrega un resumen con: qué se hizo, problemas encontrados, resultados de verificación y sugerencia de commit.
+
+---
+
 ## 1. Autenticación y Autorización (JWT)
 - [x] 1.1 Instalar dependencias: `python-jose[cryptography]` y `passlib[bcrypt]` ✓
 - [x] 1.2 Crear `app/core/security.py` — hash de password, verificación, generación/validación de JWT ✓
