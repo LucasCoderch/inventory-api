@@ -10,7 +10,12 @@
       "Bash(curl -s \"http://127.0.0.1:8000/api/v1/products\")",
       "Bash(curl -sv \"http://127.0.0.1:8000/api/v1/products\")",
       "Bash(.venv/Scripts/pip freeze *)",
-      "Bash(.venv/Scripts/python -)"
+      "Bash(.venv/Scripts/python -)",
+      "Bash(taskkill /PID 8796 /F)",
+      "Bash(cmd /c \"taskkill /PID 8796 /F\")",
+      "Bash(netstat -ano)",
+      "Bash(cmd *)",
+      "Bash(powershell -Command \"Stop-Process -Id 8796 -Force\")"
     ]
   }
 }
